@@ -22,6 +22,6 @@ public interface UserController {
     @GetMapping(value = "/users")
     ResponseEntity<List<User>> findAll();
 
-    @GetMapping(value = "/users/{username}")
-    ResponseEntity<User> findByUsername(@PathVariable String username);
+    @GetMapping(value = "/users/{email}")
+    ResponseEntity<User> findByEmail(@PathVariable String email);
 }

@@ -29,7 +29,7 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    public ResponseEntity<User> findByUsername(@PathVariable String username) {
-        return ResponseEntity.ok(userService.findByUsername(username));
+    public ResponseEntity<User> findByEmail(@PathVariable String email) {
+        return ResponseEntity.ok(userService.findByEmail(email));
     }
 }

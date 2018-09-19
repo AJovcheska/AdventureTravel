@@ -13,7 +13,7 @@ public final class TripDtoToTripMapper {
         trip.setRegion(tripDto.getRegion());
         trip.setCountry(tripDto.getCountry());
         trip.setTitle(tripDto.getTitle());
-        trip.setStars(tripDto.getStars());
+        trip.setRating(tripDto.getRating());
         trip.setDescription(tripDto.getDescription());
         trip.setDepartureDate(tripDto.getDepartureDate());
         trip.setEndDateToSign(tripDto.getEndDateToSign());

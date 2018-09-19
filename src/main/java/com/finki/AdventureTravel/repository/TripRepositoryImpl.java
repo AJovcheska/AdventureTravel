@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
+import sun.swing.StringUIClientPropertyKey;
 
 import java.util.List;
 
@@ -43,7 +45,7 @@ public class TripRepositoryImpl implements TripRepository {
     }
 
     @Override
-    public List<TripDto> findSelectedTrips(List<String> countries, List<String> categories) {
+    public List<TripDto> findSelectedTrips(List<String> countries, List<String> categories, String sortBy, boolean ascending) {
         String selectAll = tripQueries.getSelectAll();
         StringBuilder sb = new StringBuilder();
         if (isNullOrEmpty(countries) && isNullOrEmpty(categories)) {
@@ -58,6 +60,16 @@ public class TripRepositoryImpl implements TripRepository {
                 sb.append(queryBuilder.addCategories(categories));
                 sb.append(" and ");
                 sb.append(queryBuilder.addCountries(countries));
+            }
+
+            if (sortBy != null) {
+                sb.append(" order by ");
+                sb.append(sortBy);
+                if (ascending) {
+                    sb.append(" asc ");
+                } else {
+                    sb.append(" desc ");
+                }
             }
             selectAll += sb.toString();
             return jdbcTemplate.query(selectAll, new TripMapper());

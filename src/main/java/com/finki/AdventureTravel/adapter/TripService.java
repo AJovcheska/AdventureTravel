@@ -36,7 +36,7 @@ public class TripService {
         return trips;
     }
 
-    public List<Trip> getSelectedTrips(List<String> countries, List<String> categories) {
-        return mapTripDtoListToTripList(tripRepository.findSelectedTrips(countries, categories));
+    public List<Trip> getSelectedTrips(List<String> countries, List<String> categories, String sortBy, boolean ascending) {
+        return mapTripDtoListToTripList(tripRepository.findSelectedTrips(countries, categories, sortBy, ascending));
     }
 }

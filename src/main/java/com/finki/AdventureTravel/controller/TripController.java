@@ -25,5 +25,8 @@ public interface TripController {
     ResponseEntity<List<Trip>> getTripsByRegion(@PathVariable(name = "region") String region);
 
     @GetMapping(value = "/trips/selected")
-    ResponseEntity<List<Trip>> getSelectedTrips(@RequestParam(name = "country", required = false) List<String> countries, @RequestParam(name = "category", required = false) List<String> categories);
+    ResponseEntity<List<Trip>> getSelectedTrips(@RequestParam(name = "country", required = false) List<String> countries,
+                                                @RequestParam(name = "category", required = false) List<String> categories,
+                                                @RequestParam(name = "sortBy") String sortBy,
+                                                @RequestParam(name = "ascending") boolean ascending);
 }

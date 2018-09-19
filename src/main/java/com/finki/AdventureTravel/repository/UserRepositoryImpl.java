@@ -18,14 +18,13 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Autowired
     public UserRepositoryImpl(UserQueries userQueries, NamedParameterJdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
         this.userQueries = userQueries;
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
     public void addUser(User user) {
         MapSqlParameterSource map = new MapSqlParameterSource();
-        map.addValue("username", user.getUsername());
         map.addValue("name", user.getName());
         map.addValue("age", user.getAge());
         map.addValue("password", user.getPassword());
@@ -42,9 +41,9 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User findByUsername(String username) {
+    public User findByEmail(String email) {
         return jdbcTemplate.queryForObject(userQueries.getSelectByUsername(),
-                new MapSqlParameterSource("username", username), new UserMapper());
+                new MapSqlParameterSource("email", email), new UserMapper());
     }
 
 

@@ -18,7 +18,7 @@ public class TripMapper implements RowMapper<TripDto> {
         trip.setTitle(resultSet.getString("title"));
         trip.setBeenHere(resultSet.getInt("been_here"));
         trip.setWantToVisit(resultSet.getInt("want_to_visit"));
-        trip.setStars(resultSet.getInt("stars"));
+        trip.setRating(resultSet.getInt("rating"));
         trip.setPrice(resultSet.getBigDecimal("price"));
         trip.setDepartureDate(resultSet.getDate("departure_date"));
         trip.setEndDateToSign(resultSet.getDate("end_date_to_sign"));

@@ -16,6 +16,6 @@ public interface TripRepository {
     @Transactional(readOnly = true)
     List<TripDto> findByRegion(String region);
 
-    List<TripDto> findSelectedTrips(List<String> countries, List<String> categories);
+    List<TripDto> findSelectedTrips(List<String> countries, List<String> categories, String sortBy, boolean ascending);
 
 }

@@ -20,7 +20,7 @@ public class TripDto {
 
     private BigDecimal price;
 
-    private Integer stars;
+    private Integer rating;
 
     private Integer beenHere;
 
