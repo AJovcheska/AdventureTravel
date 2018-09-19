@@ -12,14 +12,11 @@ import org.springframework.stereotype.Component;
 @PropertySource("classpath:trip-queries.properties")
 public class TripQueries {
 
-    @Value("${select-all}")
+    @Value("${select-all-trips}")
     private String selectAll;
 
     @Value("${select-by-region}")
     private String selectByRegion;
-
-    @Value("${select-by-country}")
-    private String selectByCountry;
 
     @Value("${select-by-category}")
     private String selectByCategory;

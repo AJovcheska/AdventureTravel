@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @ResponseBody
@@ -20,9 +21,9 @@ public interface TripController {
     @GetMapping(value = "/trips/category/{category}")
     ResponseEntity<List<Trip>> getTripsByCategory(@PathVariable(name = "category") String category);
 
-    @GetMapping(value = "/trips/country/{country}")
-    ResponseEntity<List<Trip>> getTripsByCountry(@PathVariable(name = "country") String country);
-
     @GetMapping(value = "/trips/region/{region}")
     ResponseEntity<List<Trip>> getTripsByRegion(@PathVariable(name = "region") String region);
+
+    @GetMapping(value = "/trips/selected")
+    ResponseEntity<List<Trip>> getSelectedTrips(@RequestParam(name = "country", required = false) List<String> countries, @RequestParam(name = "category", required = false) List<String> categories);
 }

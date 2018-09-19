@@ -3,6 +3,7 @@ package com.finki.AdventureTravel.repository;
 import com.finki.AdventureTravel.queries.TripQueries;
 import com.finki.AdventureTravel.mapper.TripMapper;
 import com.finki.AdventureTravel.model.TripDto;
+import com.finki.AdventureTravel.util.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -14,12 +15,14 @@ import java.util.List;
 public class TripRepositoryImpl implements TripRepository {
 
     private TripQueries tripQueries;
+    private QueryBuilder queryBuilder;
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     @Autowired
-    public TripRepositoryImpl(NamedParameterJdbcTemplate jdbcTemplate, TripQueries tripQueries) {
+    public TripRepositoryImpl(NamedParameterJdbcTemplate jdbcTemplate, TripQueries tripQueries, QueryBuilder queryBuilder) {
         this.jdbcTemplate = jdbcTemplate;
         this.tripQueries = tripQueries;
+        this.queryBuilder = queryBuilder;
     }
 
     @Override
@@ -40,9 +43,29 @@ public class TripRepositoryImpl implements TripRepository {
     }
 
     @Override
-    public List<TripDto> findByCountry(String country) {
-        return jdbcTemplate.query(tripQueries.getSelectByCountry(),
-                new MapSqlParameterSource("country", country), new TripMapper());
+    public List<TripDto> findSelectedTrips(List<String> countries, List<String> categories) {
+        String selectAll = tripQueries.getSelectAll();
+        StringBuilder sb = new StringBuilder();
+        if (isNullOrEmpty(countries) && isNullOrEmpty(categories)) {
+            return jdbcTemplate.query(selectAll, new TripMapper());
+        } else {
+            sb.append(" where ");
+            if (isNullOrEmpty(categories)) {
+                sb.append(queryBuilder.addCountries(countries));
+            } else if (isNullOrEmpty(countries)) {
+                sb.append(queryBuilder.addCategories(categories));
+            } else {
+                sb.append(queryBuilder.addCategories(categories));
+                sb.append(" and ");
+                sb.append(queryBuilder.addCountries(countries));
+            }
+            selectAll += sb.toString();
+            return jdbcTemplate.query(selectAll, new TripMapper());
+        }
+    }
+
+    private boolean isNullOrEmpty(List<String> list) {
+        return list == null || list.isEmpty();
     }
 
 }

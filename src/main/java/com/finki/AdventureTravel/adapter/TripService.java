@@ -24,10 +24,6 @@ public class TripService {
         return mapTripDtoListToTripList(tripRepository.findByCategory(category));
     }
 
-    public List<Trip> getByCountry(String country) {
-        return mapTripDtoListToTripList(tripRepository.findByCountry(country));
-    }
-
     public List<Trip> getByRegion(String region) {
         return mapTripDtoListToTripList(tripRepository.findByRegion(region));
     }
@@ -38,5 +34,9 @@ public class TripService {
             trips.add(TripDtoToTripMapper.mapDtoToTrip(tripDto));
         }
         return trips;
+    }
+
+    public List<Trip> getSelectedTrips(List<String> countries, List<String> categories) {
+        return mapTripDtoListToTripList(tripRepository.findSelectedTrips(countries, categories));
     }
 }

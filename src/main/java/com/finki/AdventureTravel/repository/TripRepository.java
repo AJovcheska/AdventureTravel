@@ -16,7 +16,6 @@ public interface TripRepository {
     @Transactional(readOnly = true)
     List<TripDto> findByRegion(String region);
 
-    @Transactional(readOnly = true)
-    List<TripDto> findByCountry(String country);
+    List<TripDto> findSelectedTrips(List<String> countries, List<String> categories);
 
 }
