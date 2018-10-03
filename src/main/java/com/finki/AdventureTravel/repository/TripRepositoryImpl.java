@@ -8,9 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.StringUtils;
-import sun.swing.StringUIClientPropertyKey;
 
+import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -45,35 +44,47 @@ public class TripRepositoryImpl implements TripRepository {
     }
 
     @Override
-    public List<TripDto> findSelectedTrips(List<String> countries, List<String> categories, String sortBy, boolean ascending) {
+    public TripDto findById(String id) {
+        return jdbcTemplate.queryForObject(tripQueries.getSelectById(),
+                new MapSqlParameterSource("id", id), new TripMapper());
+    }
+
+    @Override
+    public List<TripDto> findTripsForUser(String user) {
+        return jdbcTemplate.query(tripQueries.getSelectTripsForUser(),
+                new MapSqlParameterSource("user", user), new TripMapper());
+
+    }
+
+    @Override
+    public List<TripDto> findSelectedTrips(List<String> regions, List<String> categories, String sortBy, boolean ascending) {
         String selectAll = tripQueries.getSelectAll();
         StringBuilder sb = new StringBuilder();
-        if (isNullOrEmpty(countries) && isNullOrEmpty(categories)) {
-            return jdbcTemplate.query(selectAll, new TripMapper());
-        } else {
+        if (!isNullOrEmpty(regions) || !isNullOrEmpty(categories)) {
             sb.append(" where ");
             if (isNullOrEmpty(categories)) {
-                sb.append(queryBuilder.addCountries(countries));
-            } else if (isNullOrEmpty(countries)) {
+                sb.append(queryBuilder.addRegions(regions));
+            } else if (isNullOrEmpty(regions)) {
                 sb.append(queryBuilder.addCategories(categories));
             } else {
                 sb.append(queryBuilder.addCategories(categories));
                 sb.append(" and ");
-                sb.append(queryBuilder.addCountries(countries));
+                sb.append(queryBuilder.addRegions(regions));
             }
-
-            if (sortBy != null) {
-                sb.append(" order by ");
-                sb.append(sortBy);
-                if (ascending) {
-                    sb.append(" asc ");
-                } else {
-                    sb.append(" desc ");
-                }
-            }
-            selectAll += sb.toString();
-            return jdbcTemplate.query(selectAll, new TripMapper());
+        } else if (isNullOrEmpty(categories) && isNullOrEmpty(regions)) {
+            return Collections.emptyList();
         }
+
+        sb.append(" order by ");
+        sb.append(sortBy);
+        if (ascending) {
+            sb.append(" asc ");
+        } else {
+            sb.append(" desc ");
+        }
+
+        selectAll += sb.toString();
+        return jdbcTemplate.query(selectAll, new TripMapper());
     }
 
     private boolean isNullOrEmpty(List<String> list) {

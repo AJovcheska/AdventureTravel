@@ -24,9 +24,15 @@ public interface TripController {
     @GetMapping(value = "/trips/region/{region}")
     ResponseEntity<List<Trip>> getTripsByRegion(@PathVariable(name = "region") String region);
 
+    @GetMapping(value = "/trips/id")
+    ResponseEntity<Trip> getTripById(@RequestParam(name = "id") String id);
+
     @GetMapping(value = "/trips/selected")
-    ResponseEntity<List<Trip>> getSelectedTrips(@RequestParam(name = "country", required = false) List<String> countries,
+    ResponseEntity<List<Trip>> getSelectedTrips(@RequestParam(name = "region", required = false) List<String> regions,
                                                 @RequestParam(name = "category", required = false) List<String> categories,
                                                 @RequestParam(name = "sortBy") String sortBy,
                                                 @RequestParam(name = "ascending") boolean ascending);
+
+    @GetMapping(value = "/user/trips")
+    ResponseEntity<List<Trip>> getTripsForUser(@PathVariable String user);
 }

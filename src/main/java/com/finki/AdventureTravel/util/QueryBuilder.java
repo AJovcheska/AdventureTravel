@@ -7,13 +7,13 @@ import java.util.List;
 @Component
 public class QueryBuilder {
 
-    public String addCountries(List<String> countries) {
+    public String addRegions(List<String> regions) {
         StringBuilder sb = new StringBuilder();
-        if (countries != null && countries.size() > 0) {
-            sb.append("country in ('");
-            for (int i = 0; i < countries.size(); i++) {
-                sb.append(countries.get(i));
-                if (i != countries.size() - 1) {
+        if (regions != null && regions.size() > 0) {
+            sb.append("region in ('");
+            for (int i = 0; i < regions.size(); i++) {
+                sb.append(regions.get(i));
+                if (i != regions.size() - 1) {
                     sb.append("', '");
                 }
             }

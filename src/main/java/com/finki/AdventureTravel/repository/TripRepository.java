@@ -16,6 +16,13 @@ public interface TripRepository {
     @Transactional(readOnly = true)
     List<TripDto> findByRegion(String region);
 
-    List<TripDto> findSelectedTrips(List<String> countries, List<String> categories, String sortBy, boolean ascending);
+    @Transactional(readOnly = true)
+    TripDto findById(String title);
+
+    @Transactional(readOnly = true)
+    List<TripDto> findSelectedTrips(List<String> regions, List<String> categories, String sortBy, boolean ascending);
+
+    @Transactional(readOnly = true)
+    List<TripDto> findTripsForUser(String user);
 
 }

@@ -28,6 +28,14 @@ public class TripService {
         return mapTripDtoListToTripList(tripRepository.findByRegion(region));
     }
 
+    public List<Trip> findTripsForUser(String user) {
+        return mapTripDtoListToTripList(tripRepository.findTripsForUser(user));
+    }
+
+    public Trip getTripById(String id) {
+        return TripDtoToTripMapper.mapDtoToTrip(tripRepository.findById(id));
+    }
+
     private List<Trip> mapTripDtoListToTripList(List<TripDto> tripDtos) {
         List<Trip> trips = Lists.newArrayList();
         for (TripDto tripDto : tripDtos) {
@@ -36,7 +44,7 @@ public class TripService {
         return trips;
     }
 
-    public List<Trip> getSelectedTrips(List<String> countries, List<String> categories, String sortBy, boolean ascending) {
-        return mapTripDtoListToTripList(tripRepository.findSelectedTrips(countries, categories, sortBy, ascending));
+    public List<Trip> getSelectedTrips(List<String> regions, List<String> categories, String sortBy, boolean ascending) {
+        return mapTripDtoListToTripList(tripRepository.findSelectedTrips(regions, categories, sortBy, ascending));
     }
 }

@@ -32,11 +32,21 @@ public class TripControllerImpl implements TripController {
     }
 
     @Override
-    public ResponseEntity<List<Trip>> getSelectedTrips(@RequestParam(name = "country", required = false) List<String> countries,
+    public ResponseEntity<Trip> getTripById(@RequestParam(name = "id") String id) {
+        return ResponseEntity.ok(tripService.getTripById(id));
+    }
+
+    @Override
+    public ResponseEntity<List<Trip>> getSelectedTrips(@RequestParam(name = "region", required = false) List<String> regions,
                                                        @RequestParam(name = "category", required = false) List<String> categories,
                                                        @RequestParam(name = "sortBy") String sortBy,
                                                        @RequestParam(name = "ascending") boolean ascending) {
-        return ResponseEntity.ok(tripService.getSelectedTrips(countries, categories, sortBy, ascending));
+        return ResponseEntity.ok(tripService.getSelectedTrips(regions, categories, sortBy, ascending));
+    }
+
+    @Override
+    public ResponseEntity<List<Trip>> getTripsForUser(String user) {
+        return ResponseEntity.ok(tripService.findTripsForUser(user));
     }
 }
 

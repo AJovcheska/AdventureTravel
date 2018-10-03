@@ -20,6 +20,12 @@ public class TripQueries {
 
     @Value("${select-by-category}")
     private String selectByCategory;
+
+    @Value("${select-by-id}")
+    private String selectById;
+
+    @Value("${select-trips-for-user}")
+    private String selectTripsForUser;
 }
 
 
