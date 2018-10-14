@@ -71,8 +71,6 @@ public class TripRepositoryImpl implements TripRepository {
                 sb.append(" and ");
                 sb.append(queryBuilder.addRegions(regions));
             }
-        } else if (isNullOrEmpty(categories) && isNullOrEmpty(regions)) {
-            return Collections.emptyList();
         }
 
         sb.append(" order by ");

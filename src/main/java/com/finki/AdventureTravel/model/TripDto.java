@@ -22,13 +22,7 @@ public class TripDto {
 
     private Integer rating;
 
-    private Integer beenHere;
-
-    private Integer wantToVisit;
-
     private Date departureDate;
 
     private Date endDateToSign;
-
-    private String description;
 }

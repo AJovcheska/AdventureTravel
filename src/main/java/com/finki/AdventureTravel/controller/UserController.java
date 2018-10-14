@@ -14,7 +14,7 @@ import org.springframework.http.MediaType;
 import java.util.List;
 
 @ResponseBody
-@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 public interface UserController {
 
     @PostMapping(value = "/users/register")
