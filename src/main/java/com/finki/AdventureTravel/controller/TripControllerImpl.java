@@ -48,5 +48,10 @@ public class TripControllerImpl implements TripController {
     public ResponseEntity<List<Trip>> getTripsForUser(String user) {
         return ResponseEntity.ok(tripService.findTripsForUser(user));
     }
+
+    @Override
+    public ResponseEntity<List<Trip>> getTripsByTag(@RequestParam(name = "tag") String tag) {
+        return ResponseEntity.ok(tripService.getByTag(tag));
+    }
 }
 

@@ -47,4 +47,16 @@ public class TripService {
     public List<Trip> getSelectedTrips(List<String> regions, List<String> categories, String sortBy, boolean ascending) {
         return mapTripDtoListToTripList(tripRepository.findSelectedTrips(regions, categories, sortBy, ascending));
     }
+
+    public List<Trip> getByTag(String tag) {
+        List<Trip> trips = mapTripDtoListToTripList(tripRepository.findAll());
+
+        List<Trip> tripsByTag = Lists.newArrayList();
+        for (Trip trip : trips) {
+            if (trip.getTags().contains(tag)) {
+                tripsByTag.add(trip);
+            }
+        }
+        return tripsByTag;
+    }
 }

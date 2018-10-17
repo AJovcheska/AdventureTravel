@@ -22,6 +22,8 @@ public class Trip {
 
     private BigDecimal price;
 
+    private String tags;
+
     private Integer rating;
 
     private Date departureDate;

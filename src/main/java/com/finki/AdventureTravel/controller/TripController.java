@@ -35,4 +35,7 @@ public interface TripController {
 
     @GetMapping(value = "/user/trips")
     ResponseEntity<List<Trip>> getTripsForUser(@PathVariable String user);
+
+    @GetMapping(value = "/trips/tag")
+    ResponseEntity<List<Trip>> getTripsByTag(@RequestParam(name = "tag") String tag);
 }

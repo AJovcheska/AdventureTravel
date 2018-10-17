@@ -22,6 +22,8 @@ public class TripDto {
 
     private Integer rating;
 
+    private String tags;
+
     private Date departureDate;
 
     private Date endDateToSign;

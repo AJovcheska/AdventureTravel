@@ -14,6 +14,7 @@ public final class TripDtoToTripMapper {
         trip.setCountry(tripDto.getCountry());
         trip.setTitle(tripDto.getTitle());
         trip.setRating(tripDto.getRating());
+        trip.setTags(tripDto.getTags());
         trip.setDepartureDate(tripDto.getDepartureDate());
         trip.setEndDateToSign(tripDto.getEndDateToSign());
         trip.setPrice(tripDto.getPrice());
