@@ -18,6 +18,10 @@ public class UserMapper implements RowMapper<User> {
         user.setEmail(resultSet.getString("email"));
         user.setSex(resultSet.getString("sex"));
         user.setProfession(resultSet.getString("profession"));
+        user.setDestination(resultSet.getString("destination"));
+        user.setTripLength(resultSet.getString("trip_length"));
+        user.setTripCompanion(resultSet.getString("trip_companion"));
+        user.setEntertainment(resultSet.getString("entertainment"));
         return user;
     }
 }

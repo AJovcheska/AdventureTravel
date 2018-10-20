@@ -21,4 +21,12 @@ public class User {
 
     private String profession;
 
+    private String tripCompanion;
+
+    private String entertainment;
+
+    private String tripLength;
+
+    private String destination;
+
 }
