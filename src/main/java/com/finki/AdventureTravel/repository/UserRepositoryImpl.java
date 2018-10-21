@@ -32,7 +32,7 @@ public class UserRepositoryImpl implements UserRepository {
         map.addValue("email", user.getEmail());
         map.addValue("sex", user.getSex());
         map.addValue("profession", user.getProfession());
-        map.addValue("travel_companion", user.getTripCompanion());
+        map.addValue("trip_companion", user.getTripCompanion());
         map.addValue("entertainment", user.getEntertainment());
         map.addValue("trip_length", user.getTripLength());
         map.addValue("destination", user.getDestination());

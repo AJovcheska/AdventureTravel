@@ -11,6 +11,6 @@ INSERT INTO TRIP (ID,CATEGORY,REGION,COUNTRY,TITLE,PRICE,TAGS,DURATION,RATING,DE
 INSERT INTO TRIP (ID,CATEGORY,REGION,COUNTRY,TITLE,PRICE,TAGS,DURATION,RATING,DEPARTURE_DATE,END_DATE_TO_SIGN) VALUES (2010,'SCIENCE_AND_NATURE','Africa','Rwanda','Gorillas in Africa''s Midst',6549,'PhotographyBomb,FascinatingFauna,MotherNature',13,3.5,null,null);
 INSERT INTO TRIP (ID,CATEGORY,REGION,COUNTRY,TITLE,PRICE,TAGS,DURATION,RATING,DEPARTURE_DATE,END_DATE_TO_SIGN) VALUES (2011,'SCIENCE_AND_NATURE','Africa','Zambia','Wild Zambian Safari',6538,'PhotographyBomb,FascinatingFauna,MotherNature',11,4.8,null,null);
 
-INSERT INTO USER(EMAIL, NAME, AGE, PASSWORD, COUNTRY, SEX, PROFESSION) VALUES ('jovcheska.aleksandra@yahoo.com', 'Aleksandra Jovcheska', 23, 'password', 'Macedonia', 'F', 'Student');
-INSERT INTO USER(EMAIL, NAME, AGE, PASSWORD, COUNTRY, SEX, PROFESSION) VALUES ('jovcheska.vera@yahoo.com', 'Vera Jovcheska', 25, 'password123', 'Macedonia', 'F', 'Professor');
-INSERT INTO USER(EMAIL, NAME, AGE, PASSWORD, COUNTRY, SEX, PROFESSION) VALUES ('jovcheska.valentina@yahoo.com', 'Valentina Jovcheska', 49, 'password789', 'Macedonia', 'F', 'Manager');
+INSERT INTO USER(EMAIL, NAME, AGE, PASSWORD, COUNTRY, SEX, PROFESSION, DESTINATION, TRIP_LENGTH, TRIP_COMPANION, ENTERTAINMENT) VALUES ('jovcheska.aleksandra@yahoo.com', 'Aleksandra Jovcheska', 23, 'password', 'Macedonia', 'F', 'Student', '', '', '', '');
+INSERT INTO USER(EMAIL, NAME, AGE, PASSWORD, COUNTRY, SEX, PROFESSION, DESTINATION, TRIP_LENGTH, TRIP_COMPANION, ENTERTAINMENT) VALUES ('jovcheska.vera@yahoo.com', 'Vera Jovcheska', 25, 'password123', 'Macedonia', 'F', 'Professor', '', '', '', '');
+INSERT INTO USER(EMAIL, NAME, AGE, PASSWORD, COUNTRY, SEX, PROFESSION, DESTINATION, TRIP_LENGTH, TRIP_COMPANION, ENTERTAINMENT) VALUES ('jovcheska.valentina@yahoo.com', 'Valentina Jovcheska', 49, 'password789', 'Macedonia', 'F', 'Manager', '', '', '', '');
